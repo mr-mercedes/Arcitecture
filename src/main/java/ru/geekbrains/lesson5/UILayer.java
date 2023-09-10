@@ -12,5 +12,6 @@ public interface UILayer{
     void printAllTextures();
     void renderAll();
     void renderModel(int i);
-
-}
+    void addNewModel(Integer countOfTextures);
+     void deleteModel(int modelNo);
+ }

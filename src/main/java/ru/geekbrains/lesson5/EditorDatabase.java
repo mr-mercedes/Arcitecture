@@ -8,7 +8,7 @@ import java.util.Random;
  * Database
  */
 public class EditorDatabase implements Database{
-    private Random random = new Random();
+    private final Random random = new Random();
     private final  ProjectFile projectFile;
     private Collection<Entity> entities;
 
@@ -26,6 +26,7 @@ public class EditorDatabase implements Database{
     public void save() {
         //TODO: Сохранение текущего состояния всех сущностей проекта
     }
+
 
     public Collection<Entity> getAll(){
         if (entities == null){

@@ -3,10 +3,10 @@ package main.java.ru.geekbrains.lesson5;
  * Файл проекта
  */
 public class ProjectFile {
-    private String fileName;
-    private int setting1;
-    private String setting2;
-    private boolean setting3;
+    private final String fileName;
+    private final int setting1;
+    private final String setting2;
+    private final boolean setting3;
 
     public ProjectFile(String fileName) {
 

@@ -1,6 +1,7 @@
 package main.java.ru.geekbrains.lesson5;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * UI (User Interface)
@@ -114,5 +115,31 @@ public class Editor3D implements UILayer{
         businessLogicalLayer.renderModel(models.get(i));
         long endTime = (System.currentTimeMillis() - startTime);
         System.out.printf("Операция выполнена за %d мс.\n", endTime);
+    }
+
+    @Override
+    public void addNewModel(Integer countOfTextures) {
+        if (countOfTextures < 0) throw new RuntimeException(String.format("Число текстур %d", countOfTextures));
+
+        List<Texture> newTextures = new ArrayList<>();
+        for (int i = 0; i < countOfTextures; i++) {
+            newTextures.add(new Texture());
+        }
+
+        Model3D model3D = new Model3D(newTextures);
+        businessLogicalLayer.saveNewModel(model3D);
+
+        System.out.printf("Модель %d успешно добавлена\n", model3D.getId());
+    }
+
+    @Override
+    public void deleteModel(int modelNo) {
+        ArrayList<Model3D> models = (ArrayList<Model3D>)businessLogicalLayer.getAllModels();
+        if (modelNo < 0) throw new RuntimeException(String.format("Модели %d не существует", modelNo));
+
+        Model3D model3D = models.stream().filter(model -> model.getId() == modelNo).findFirst().orElseThrow(RuntimeException::new);
+
+        businessLogicalLayer.deleteModel(model3D);
+        System.out.printf("Модель %d успешно удалена\n", model3D.getId());
     }
 }

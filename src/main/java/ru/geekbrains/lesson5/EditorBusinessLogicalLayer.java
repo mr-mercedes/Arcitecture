@@ -7,7 +7,7 @@ import java.util.Random;
  * Реализация Business Logical Layer
  */
 public class EditorBusinessLogicalLayer implements BusinessLogicalLayer{
-    private DatabaseAccess databaseAccess;
+    private final DatabaseAccess databaseAccess;
 
 
     public EditorBusinessLogicalLayer(DatabaseAccess databaseAccess) {
@@ -35,7 +35,17 @@ public class EditorBusinessLogicalLayer implements BusinessLogicalLayer{
             processRender(model);
     }
 
-    private Random random = new Random();
+    @Override
+    public void saveNewModel(Model3D model) {
+        databaseAccess.addEntity(model);
+    }
+
+    @Override
+    public void deleteModel(Model3D model) {
+        databaseAccess.removeEntity(model);
+    }
+
+    private final Random random = new Random();
 
     private void processRender(Model3D model){
         try

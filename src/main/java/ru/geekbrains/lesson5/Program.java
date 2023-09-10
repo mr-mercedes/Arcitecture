@@ -29,6 +29,8 @@ public class Program {
             System.out.println("5. Отобразить все текстуры проекта");
             System.out.println("6. Выполнить рендер всех моделей");
             System.out.println("7. Выполнить рендер модели");
+            System.out.println("8. Добавить новую модель");
+            System.out.println("9. Удалить модель");
             System.out.println("0. ЗАВЕРШЕНИЕ РАБОТЫ ПРИЛОЖЕНИЯ");
             System.out.print("Пожалуйста, выберите пункт меню: ");
             if (scanner.hasNextInt()){
@@ -36,41 +38,52 @@ public class Program {
                 scanner.nextLine();
                 try {
                     switch (no) {
-                        case 0:
+                        case 0 -> {
                             System.out.println("Завершение работы приложения");
                             f = false;
-                            break;
-                        case 1:
+                        }
+                        case 1-> {
                             System.out.print("Укажите наименование файла проекта: ");
                             String fileName = scanner.nextLine();
                             editor3D.openProject(fileName);
                             System.out.println("Проект успешно открыт.");
-                            break;
-                        case 3:
-                            editor3D.showProjectSettings();
-                            break;
-                        case 4:
-                            editor3D.printAllModels();
-                            break;
-                        case 5:
-                            editor3D.printAllTextures();
-                            break;
-                        case 6:
-                            editor3D.renderAll();
-                            break;
-                        case 7:
+                        }
+                        case 3 -> editor3D.showProjectSettings();
+                        case 4 -> editor3D.printAllModels();
+                        case 5 -> editor3D.printAllTextures();
+                        case 6 -> editor3D.renderAll();
+                        case 7 -> {
                             System.out.print("Укажите номер модели: ");
-                            if (scanner.hasNextInt()){
+                            if (scanner.hasNextInt()) {
                                 int modelNo = scanner.nextInt();
                                 scanner.nextLine();
                                 editor3D.renderModel(modelNo);
-                            }
-                            else {
+                            } else {
                                 System.out.println("Номер модели указан некорректно.");
                             }
-                            break;
-                        default:
-                            System.out.println("Укажите корректный пункт меню.");
+                        }
+                        case 8 -> {
+                            System.out.println("Укажите количество текстур для модели");
+                            if (scanner.hasNextInt()) {
+                                int countTexture = scanner.nextInt();
+                                scanner.nextLine();
+                                editor3D.addNewModel(countTexture);
+                            } else {
+                                System.out.println("Количество текстур указанно не верно");
+                            }
+                        }
+                        case 9 -> {
+                            editor3D.printAllModels();
+                            System.out.println("Укажите номер модели для удаления");
+                            if (scanner.hasNextInt()) {
+                                int modelNo = scanner.nextInt();
+                                scanner.nextLine();
+                                editor3D.deleteModel(modelNo);
+                            } else {
+                                System.out.println("Номер модели указан некорректно.");
+                            }
+                        }
+                        default -> System.out.println("Укажите корректный пункт меню.");
                     }
                 }
                 catch (Exception e){

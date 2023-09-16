@@ -1,9 +1,10 @@
 package main.java.ru.geekbrains.lesson6.notes.core.application;
 
-import ru.geekbrains.lesson6.notes.core.application.interfaces.NoteEditor;
-import ru.geekbrains.lesson6.notes.core.application.interfaces.NotesDatabaseContext;
-import ru.geekbrains.lesson6.notes.core.application.interfaces.NotesPresenter;
-import ru.geekbrains.lesson6.notes.core.domain.Note;
+
+import main.java.ru.geekbrains.lesson6.notes.core.application.interfaces.NoteEditor;
+import main.java.ru.geekbrains.lesson6.notes.core.application.interfaces.NotesDatabaseContext;
+import main.java.ru.geekbrains.lesson6.notes.core.application.interfaces.NotesPresenter;
+import main.java.ru.geekbrains.lesson6.notes.core.domain.Note;
 
 import java.util.Collection;
 import java.util.Date;
@@ -22,27 +23,27 @@ public class ConcreteNoteEditor implements NoteEditor {
 
     @Override
     public boolean add(Note item) {
-        dbContext.getAll().add(item);
+        dbContext.add(item);
         return dbContext.saveChanges();
     }
 
     @Override
-    public boolean edit(Note item) {
+    public Note edit(Note item) {
         if (item == null)
-            return false;
+            throw new RuntimeException();
         Optional<Note> note = getById(item.getId());
         if (note.isEmpty())
-            return false;
+            throw new RuntimeException();
         note.get().setTitle(item.getTitle());
         note.get().setDetails(item.getDetails());
         note.get().setEditDate(new Date());
-        return dbContext.saveChanges();
+        return dbContext.edit(note.get());
     }
 
     @Override
-    public boolean remove(Note item) {
+    public void remove(Note item) {
         dbContext.getAll().remove(item);
-        return dbContext.saveChanges();
+        dbContext.saveChanges();
     }
 
     @Override

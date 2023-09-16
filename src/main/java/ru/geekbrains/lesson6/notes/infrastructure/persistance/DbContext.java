@@ -10,7 +10,7 @@ public abstract class DbContext {
 
     protected abstract void onModelCreating(ModelBuilder builder);
 
-    public boolean saveChanges(){
+    public boolean saveChanges() {
         //TODO: Сохранение изменений в БД
         return true;
     }
@@ -18,7 +18,7 @@ public abstract class DbContext {
 
 class ModelBuilder {
 
-    public ModelBuilder applyConfiguration(ModelConfiguration configuration){
+    public ModelBuilder applyConfiguration(ModelConfiguration configuration) {
         //TODO: добавление конфигурации маппинга объекта некоторого типа к структуре таблицы БД
         return this;
     }

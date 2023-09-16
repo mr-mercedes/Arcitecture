@@ -3,7 +3,7 @@ package main.java.ru.geekbrains.lesson6.notes.core.domain;
 import java.util.Date;
 
 public class Note {
-    
+
     @Override
     public String toString() {
         return "Note{" +

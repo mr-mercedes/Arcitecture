@@ -1,7 +1,8 @@
 package main.java.ru.geekbrains.lesson6.notes.infrastructure.persistance.configurations;
 
-import ru.geekbrains.lesson6.notes.core.domain.Note;
-import ru.geekbrains.lesson6.notes.infrastructure.persistance.ModelConfiguration;
+
+import main.java.ru.geekbrains.lesson6.notes.core.domain.Note;
+import main.java.ru.geekbrains.lesson6.notes.infrastructure.persistance.ModelConfiguration;
 
 public class NoteConfiguration implements ModelConfiguration<Note> {
 
